@@ -1,0 +1,29 @@
+{
+  "name": "Tic-Tac-Win",
+  "short_name": "Tic-Tac-Win",
+  "description": "Play the ultimate Tic Tac Toe Game and experience with smart ai.",
+  "start_url": "splash.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "images/Tic-Tac-Toe-Logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+        "purpose": "maskable"
+    },
+    {
+      "src": "images/Tic-Tac-Toe-Logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+        "purpose": "any maskable"
+    },
+    {
+      "src": "images/Tic-Tac-Toe-Logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

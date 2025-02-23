@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sketch Tic Tac Toe</title>
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Gochi Hand', cursive;
+    }
+
+    body {
+      background-color: #9ec2e559;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .status {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2c1810;
+      position: relative;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      position: relative;
+      background: #fffaf3;
+      border: 3px solid #2c1810;
+    }
+
+    .game-board::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border: 2px solid #2c1810;
+      border-radius: 10px;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%,
+          2% 2%, 98% 2%, 98% 98%, 2% 98%, 2% 2%);
+    }
+
+    .cell {
+      aspect-ratio: 1;
+      background-color: #f8f9fa;
+      border: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin: 2px;
+    }
+
+    .cell::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 2px solid #2c1810;
+      border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 2 L2 0 L4 2 L6 0 L8 2 L8 4 L6 6 L8 8 L6 10 L4 8 L2 10 L0 8 L2 6 L0 4' fill='none' stroke='%232c1810' stroke-width='1'/%3E%3C/svg%3E") 2 round;
+    }
+
+    .cell.x {
+      color: #e74c3c;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: rgba(231, 76, 60, 0.1);
+    }
+
+    .cell.o {
+      color: #3498db;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: rgba(52, 152, 219, 0.1);
+    }
+
+    .reset-btn,
+    .back-btn {
+      margin: 25px auto 0;
+      padding: 12px 35px;
+      font-size: 1.8rem;
+      background-color: #fffaf3;
+      border: 3px solid #2c1810;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #2c1810;
+      position: relative;
+      display: block;
+    }
+
+    .reset-btn::before,
+    .back-btn::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border: 2px solid #2c1810;
+      border-radius: 8px;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%,
+          3% 3%, 97% 3%, 97% 97%, 3% 97%, 3% 3%);
+    }
+
+    .reset-btn:hover,
+    .back-btn:hover {
+      background-color: #d86233;
+      color: #fffaf3;
+    }
+
+    @media (max-width: 480px) {
+      .cell {
+        font-size: 3.5rem;
+      }
+
+      .status {
+        font-size: 2rem;
+      }
+
+      .reset-btn,
+      .back-btn {
+        font-size: 1.5rem;
+        padding: 10px 30px;
+      }
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #aee9bd;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px #000000;
+
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Add mode selection button styles */
+    .mode-btn {
+      margin: 10px auto;
+      padding: 12px 35px;
+      font-size: 1.5rem;
+      background-color: #f3ffff;
+      border: 3px solid #2c1810;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #2c1810;
+      display: block;
+      width: 80%;
+    }
+
+    .mode-btn:hover {
+      background-color: #d86233;
+      color: #fffaf3;
+    }
+
+    /* Add hidden class for initial state */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Mode Selection Modal -->
+  <div id="modeModal" class="modal" style="display: flex;">
+    <div class="modal-content">
+      <p style="font-size: 1.8rem; margin-bottom: 20px;">Choose game mode:</p>
+      <button class="mode-btn" id="playFriend">Play with Friend</button>
+      <button class="mode-btn" id="playComputer">Play with Computer</button>
+    </div>
+  </div>
+
+  <div class="container hidden" id="gameContainer">
+    <div class="status" id="status">Player X's turn</div>
+    <div class="game-board" id="board">
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+    </div>
+    <button class="reset-btn" id="resetBtn">Reset Game</button>
+    <button class="back-btn" id="backBtn">Back</button>
+  </div>
+
+  <!-- Draw Modal -->
+  <div id="drawModal" class="modal">
+    <div class="modal-content">
+      <p>Game is a draw! The game will restart.</p>
+    </div>
+  </div>
+
+  <!-- Win Modal -->
+  <div id="winModal" class="modal">
+    <div class="modal-content">
+      <p id="winMessage"></p>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
+
+  <script>
+    const cells = document.querySelectorAll('[data-cell]');
+    const status = document.getElementById('status');
+    const resetBtn = document.getElementById('resetBtn');
+    const backBtn = document.getElementById('backBtn');
+    const drawModal = document.getElementById('drawModal');
+    const winModal = document.getElementById('winModal');
+    const closeDrawModal = document.getElementById('closeDrawModal');
+    const closeWinModal = document.getElementById('closeWinModal');
+    const winMessage = document.getElementById('winMessage');
+    let currentPlayer = 'x';
+    let gameActive = true;
+
+    const winCombinations = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
+
+    // New game mode variables
+    const modeModal = document.getElementById('modeModal');
+    const playFriendBtn = document.getElementById('playFriend');
+    const playComputerBtn = document.getElementById('playComputer');
+    const gameContainer = document.getElementById('gameContainer');
+    let gameMode = 'friend';
+
+    // Mode selection handlers
+    playFriendBtn.addEventListener('click', () => {
+      gameMode = 'friend';
+      modeModal.style.display = 'none';
+      gameContainer.classList.remove('hidden');
+      resetGame();
+    });
+
+    playComputerBtn.addEventListener('click', () => {
+      gameMode = 'computer';
+      modeModal.style.display = 'none';
+      gameContainer.classList.remove('hidden');
+      resetGame();
+      // Computer starts first if needed (remove if human should always start)
+      // if (currentPlayer === 'o') computerMove();
+    });
+
+    // Back button handler
+    backBtn.addEventListener('click', () => {
+      gameContainer.classList.add('hidden');
+      modeModal.style.display = 'flex';
+      resetGame();
+    });
+
+    // Modified handleClick function
+    function handleClick(e) {
+      const cell = e.target;
+      // Prevent human from clicking during computer's turn
+      if (gameMode === 'computer' && currentPlayer !== 'x') return;
+      if (cell.textContent !== '' || !gameActive) return;
+
+      cell.textContent = currentPlayer.toUpperCase();
+      cell.classList.add(currentPlayer);
+
+      if (checkWin()) {
+        handleGameEnd();
+        return;
+      }
+
+      if (checkDraw()) {
+        handleDraw();
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+      status.textContent = `Player ${currentPlayer.toUpperCase()}'s turn`;
+
+      // Computer's turn
+      if (gameMode === 'computer' && currentPlayer === 'o') {
+        setTimeout(computerMove, 500);
+      }
+    }
+
+    // Computer move logic
+    function computerMove() {
+      if (!gameActive) return;
+
+      const emptyCells = [...cells].filter(cell => cell.textContent === '');
+      if (emptyCells.length === 0) return;
+
+      // Simple AI: random move
+      const randomIndex = Math.floor(Math.random() * emptyCells.length);
+      const cell = emptyCells[randomIndex];
+      cell.textContent = 'O';
+      cell.classList.add('o');
+
+      if (checkWin()) {
+        handleGameEnd();
+        return;
+      }
+
+      if (checkDraw()) {
+        handleDraw();
+        return;
+      }
+
+      currentPlayer = 'x';
+      status.textContent = `Player ${currentPlayer.toUpperCase()}'s turn`;
+    }
+
+    // Consolidated game end handlers
+    function handleGameEnd() {
+      status.textContent = `Player ${currentPlayer.toUpperCase()} wins!`;
+      gameActive = false;
+      showWinModal();
+      setTimeout(() => {
+        hideWinModal();
+        resetGame();
+      }, 2000);
+    }
+
+    function handleDraw() {
+      status.textContent = "Game is a draw!";
+      gameActive = false;
+      showDrawModal();
+      setTimeout(() => {
+        hideDrawModal();
+        resetGame();
+      }, 2000);
+    }
+
+    function checkWin() {
+      return winCombinations.some(combination => {
+        return combination.every(index => {
+          return cells[index].textContent.toLowerCase() === currentPlayer;
+        });
+      });
+    }
+
+    function checkDraw() {
+      return [...cells].every(cell => cell.textContent !== '');
+    }
+
+    function resetGame() {
+      cells.forEach(cell => {
+        cell.textContent = '';
+        cell.classList.remove('x', 'o');
+      });
+      currentPlayer = 'x';
+      gameActive = true;
+      status.textContent = `Player ${currentPlayer.toUpperCase()}'s turn`;
+    }
+
+    function showDrawModal() {
+      drawModal.style.display = "flex";
+    }
+
+    function hideDrawModal() {
+      drawModal.style.display = "none";
+    }
+
+    function showWinModal() {
+      winMessage.textContent = `Player ${currentPlayer.toUpperCase()} wins! The game will restart.`;
+      winModal.style.display = "flex";
+    }
+
+    function hideWinModal() {
+      winModal.style.display = "none";
+    }
+
+    cells.forEach(cell => cell.addEventListener('click', handleClick));
+    resetBtn.addEventListener('click', resetGame);
+    closeDrawModal.addEventListener('click', hideDrawModal);
+    closeWinModal.addEventListener('click', hideWinModal);
+
+    // Prevent zooming
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && (e.key === "+" || e.key === "-" || e.key === "0")) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener("wheel", (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // Prevent pull-to-refresh
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches.length > 1 || e.targetTouches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+  </script>
+</body>
+
+</html>
