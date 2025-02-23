@@ -1,11 +1,13 @@
 Tic Tac Win - Progressive Web App (PWA)
 
+---
+---
 
 Overview
 
 Tic Tac Win is a lightweight, fun, and engaging game that can be played offline as a Progressive Web App (PWA). It features both a multiplayer mode (playing with a friend) and a single-player mode (playing against a computer).
 
-
+---
 
 Features
 
@@ -16,7 +18,7 @@ Features
 📶 Works offline as a Progressive Web App (PWA)
 🎭 Animated splash screen for better user engagement
 
-
+---
 
 Installation & Setup
 
@@ -25,7 +27,7 @@ git clone https:https://github.com/karn30chavda/Tic-Tac-Toe-Game
 Open index.html in a browser to play the game locally.
 To install as a PWA, visit the page on a mobile browser and tap "Add to Home Screen."
 
-
+---
 
 How to Play
 
@@ -36,7 +38,7 @@ The first player to form a row, column, or diagonal of three marks wins.
 If all cells are filled without a winner, the game ends in a draw.
 Click the Reset button to start a new game.
 
-
+---
 
 Project Structure
 
@@ -47,7 +49,7 @@ Project Structure
 ├── 📄 service-worker.js # Enables offline functionality
 ├── 📂 images           # Game assets and icons
 
-
+---
 
 PWA Support
 
@@ -57,17 +59,17 @@ To test offline mode, visit Chrome DevTools > Application > Service Worker, then
 Licens
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-
+---
 
 Contributions
 Feel free to submit issues or pull requests to improve the game. 🎉
 
-
+---
 
 Contact 📧
 For support or queries, contact: 📧 Email: karanchavda543@gmail.com 🐙 GitHub: karn30chavda
 
-
+---
 
 Demo
 Play the live version: [https://tictactoewinner.netlify.app]
