@@ -1,5 +1,3 @@
----
-
 # 🎮 Tic Tac Win - Progressive Web App (PWA)
 
 **Tic Tac Win** is a lightweight, fun, and offline-capable Tic Tac Toe game. Play solo against a basic AI or challenge your friend! Fully responsive and installable as a PWA with a sketchy hand-drawn feel for extra fun.
