@@ -1,77 +1,142 @@
-Tic Tac Win - Progressive Web App (PWA)
-
----
 ---
 
-Overview
+# 🎮 Tic Tac Win - Progressive Web App (PWA)
 
-Tic Tac Win is a lightweight, fun, and engaging game that can be played offline as a Progressive Web App (PWA). It features both a multiplayer mode (playing with a friend) and a single-player mode (playing against a computer).
+**Tic Tac Win** is a lightweight, fun, and offline-capable Tic Tac Toe game. Play solo against a basic AI or challenge your friend! Fully responsive and installable as a PWA with a sketchy hand-drawn feel for extra fun.
 
 ---
 
-Features
+## ✨ Features
 
-🎨 Hand-drawn styled UI
-🔥 Play with a friend or against a simple AI
-📱 Fully responsive design
-⚡ Fast and smooth gameplay experience
-📶 Works offline as a Progressive Web App (PWA)
-🎭 Animated splash screen for better user engagement
-
----
-
-Installation & Setup
-
-Clone this repository:
-git clone https:https://github.com/karn30chavda/Tic-Tac-Toe-Game
-Open index.html in a browser to play the game locally.
-To install as a PWA, visit the page on a mobile browser and tap "Add to Home Screen."
+- 🎨 Hand-drawn styled UI
+- 🧑‍🤝‍🧑 Play with a friend or vs AI
+- 📱 Fully responsive on all screen sizes
+- ⚡ Smooth, fast gameplay
+- 📶 Works **offline** as a PWA
+- 🎭 Animated splash screen for enhanced UX
 
 ---
 
-How to Play
+## 🛠️ Installation & Setup
 
-Choose a game mode:
-Play with Friend: Two players take turns tapping the cells.
-Play with Computer: Face an AI opponent.
-The first player to form a row, column, or diagonal of three marks wins.
-If all cells are filled without a winner, the game ends in a draw.
-Click the Reset button to start a new game.
+### 💻 Local Development
+
+```bash
+git clone https://github.com/karn30chavda/Tic-Tac-Toe-Game.git
+
+1. Open index.html in your browser to play locally.
+
+
+
+📲 PWA Installation
+
+1. Open the game in a mobile browser
+
+
+2. Tap "Add to Home Screen"
+
+
+3. Launch it like a native app—even offline!
+
+
+
 
 ---
 
-Project Structure
+🕹️ How to Play
+
+1. Choose a game mode:
+
+Play with Friend: Take turns tapping cells.
+
+Play with Computer: Challenge a basic AI.
+
+
+
+2. First to complete 3-in-a-row (horizontal, vertical, or diagonal) wins.
+
+
+3. A draw occurs when all cells are filled with no winner.
+
+
+4. Hit the Reset button to start over.
+
+
+
+
+---
+
+📁 Project Structure
 
 📂 pwa-tic-tac-toe
-├── 📄 index.html       # Main game interface
-├── 📄 splash.html      # Splash screen for a smooth user experience
-├── 📄 manifest.json    # PWA configuration
-├── 📄 service-worker.js # Enables offline functionality
-├── 📂 images           # Game assets and icons
+├── 📄 index.html         # Main game interface
+├── 📄 splash.html        # Splash screen for animation
+├── 📄 manifest.json      # PWA manifest file
+├── 📄 service-worker.js  # Caching and offline support
+└── 📂 images             # Game icons and assets
+
 
 ---
 
-PWA Support
+⚙️ PWA Support
 
-The app uses a service worker (service-worker.js) to enable offline functionality.
-manifest.json ensures proper PWA installation and launch behavior.
-To test offline mode, visit Chrome DevTools > Application > Service Worker, then check "Offline" mode.
-Licens
-This project is licensed under the MIT License - see the LICENSE file for details.
+service-worker.js handles offline caching
 
----
+manifest.json defines app icon, name, and launch behavior
 
-Contributions
-Feel free to submit issues or pull requests to improve the game. 🎉
+To test:
 
----
+Open Chrome DevTools > Application > Service Worker
 
-Contact 📧
-For support or queries, contact: 📧 Email: karanchavda543@gmail.com 🐙 GitHub: karn30chavda
+Check "Offline" to simulate no connection
+
+
+
 
 ---
 
-Demo
-Play the live version: [https://tictactoewinner.netlify.app]
+🌐 Live Demo
 
-Enjoy playing Sketch Tic Tac Toe! ✨
+🎮 Play Now on Netlify →
+
+
+---
+
+📄 License
+
+MIT License – See the LICENSE file for more details.
+
+
+---
+
+🤝 Contributions
+
+Feel free to:
+
+Report bugs 🐞
+
+Suggest improvements 💡
+
+Submit PRs ✨
+
+
+Every bit helps! 🙌
+
+
+---
+
+📬 Contact
+
+📧 Email: karanchavda543@gmail.com
+
+🐙 GitHub: @karn30chavda
+
+
+
+---
+
+> Enjoy playing Sketch Tic Tac Toe! Made with ❤️ by Karan
+
+
+
+---
