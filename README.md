@@ -19,7 +19,6 @@
 
 ### 💻 Local Development
 
-```bash
 git clone https://github.com/karn30chavda/Tic-Tac-Toe-Game.git
 
 1. Open index.html in your browser to play locally.
