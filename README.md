@@ -19,7 +19,7 @@
 
 ### 💻 Local Development
 
-git clone https://github.com/karn30chavda/Tic-Tac-Toe-Game.git
+git clone https://github.com/karn30chavda/Tic-Tac-Toe-Game
 
 1. Open index.html in your browser to play locally.
 
@@ -94,7 +94,7 @@ Check "Offline" to simulate no connection
 
 🌐 Live Demo
 
-🎮 Play Now on Netlify →
+🎮 Play Now on Netlify → https://tictactoewinner.netlify.app
 
 
 ---
