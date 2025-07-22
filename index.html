@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sketch Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Modal for mode selection -->
+    <div id="modeModal" class="modal" style="display: flex">
+      <div class="modal-content">
+        <p style="font-size: 1.8rem; margin-bottom: 20px">Choose game mode:</p>
+        <button class="mode-btn" id="playFriend">Play with Friend</button>
+        <button class="mode-btn" id="playComputer">Play with Computer</button>
+      </div>
+    </div>
+
+    <div class="container hidden" id="gameContainer">
+      <div class="status" id="status">Player X's turn</div>
+      <div class="game-board" id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+      </div>
+      <button class="reset-btn" id="resetBtn">Reset Game</button>
+      <button class="back-btn" id="backBtn">Back</button>
+    </div>
+
+    <!-- Draw Modal -->
+    <div id="drawModal" class="modal">
+      <div class="modal-content">
+        <p>Game is a draw! The game will restart.</p>
+      </div>
+    </div>
+
+    <!-- Win Modal -->
+    <div id="winModal" class="modal">
+      <div class="modal-content"><p id="winMessage"></p></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
